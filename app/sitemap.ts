@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next"
 import { getIssues } from "../utils/fetchData"
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap | []> {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const publicIssues = await getIssues()
   const sitemapArray: MetadataRoute.Sitemap = []
 
@@ -15,5 +15,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap | []> {
       })
     }
   }
-  return sitemapArray
+  if (sitemapArray) {
+    return sitemapArray
+  } else {
+    return [
+      {
+        url: "https://bug-hunter.vercel.app/",
+        lastModified: new Date(),
+        priority: 1,
+        changeFrequency: "hourly",
+      },
+      {
+        url: "https://bug-hunter.vercel.app/issues",
+        lastModified: new Date(),
+        priority: 1,
+        changeFrequency: "hourly",
+      },
+    ]
+  }
 }

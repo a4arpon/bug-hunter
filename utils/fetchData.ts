@@ -1,6 +1,6 @@
-import { IssueType } from "@/types/issue.type"
+import { IssueType, IssuesType } from "@/types/issue.type"
 
-export const getIssues = async (): Promise<IssueType[] | null> => {
+export const getIssues = async (): Promise<IssuesType[] | null> => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/issues`,
@@ -15,7 +15,7 @@ export const getIssues = async (): Promise<IssueType[] | null> => {
   }
 }
 
-export const getIssue = async (id: string): Promise<IssueType | null> => {
+export const getIssue = async (id: string) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/issues/${id}`,
@@ -23,8 +23,12 @@ export const getIssue = async (id: string): Promise<IssueType | null> => {
         cache: "no-store",
       }
     )
-    const result = await response.json()
-    return result
+    const issuePacket: IssueType = await response.json()
+    if (issuePacket.issue && issuePacket.replies) {
+      return { ...issuePacket }
+    } else {
+      return null
+    }
   } catch (err) {
     return null
   }

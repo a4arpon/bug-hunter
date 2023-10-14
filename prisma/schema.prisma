@@ -30,3 +30,11 @@ enum Privacy {
   PUBLIC
   PRIVATE
 }
+
+model IssueReplay {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  issue         String
+  issue_privacy Privacy
+  replay        String
+  createdAt     DateTime @default(now())
+}

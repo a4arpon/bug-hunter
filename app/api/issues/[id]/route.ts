@@ -13,8 +13,13 @@ export async function GET(
           privacy: "PUBLIC",
         },
       })
+      const replies = await prisma.issueReplay.findMany({
+        where: {
+          issue: id,
+        },
+      })
       if (issue) {
-        return Response.json(issue, { status: 200 })
+        return Response.json({ issue, replies }, { status: 200 })
       } else {
         return Response.json("No issue found on server.", { status: 404 })
       }

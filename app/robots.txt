@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /issue/private
+Disallow: /issue/private/new
+Sitemap: https://acme.com/sitemap.xml

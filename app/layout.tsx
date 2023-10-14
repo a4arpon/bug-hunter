@@ -1,3 +1,4 @@
+import LDSchema from "@/components/shared/JSON-LD"
 import Navbar from "@/components/shared/Navbar"
 import { Toaster } from "@/components/ui/toaster"
 import "@/globals.css"
@@ -16,19 +17,18 @@ export const metadata: Metadata = {
       "Effortlessly manage issues, public & private, with Bug Hunter. Your YouTrack-inspired solution for efficient internal issue management.",
     type: "article",
     publishedTime: "2023-01-01T00:00:00.000Z",
-    authors: ["Seb", "Josh"],
     images:
       "https://i.pinimg.com/originals/b7/53/99/b75399858a77a4ba579fdcda9128f12d.jpg",
     url: "https://bug-hunter.vercel.app/",
   },
   alternates: {
-    canonical: "https://a4arpon.vercel.app",
+    canonical: "https://bug-hunter.vercel.app",
     languages: {
-      "en-US": "https://a4arpon.vercel.app",
-      "bn-BN": "https://a4arpon.vercel.app/bn/",
+      "en-US": "https://bug-hunter.vercel.app",
+      "bn-BN": "https://bug-hunter.vercel.app/bn/",
     },
     types: {
-      "application/sitemap+xml": "https://a4arpon.vercel.app/sitemap.xml",
+      "application/sitemap+xml": "https://bug-hunter.vercel.app/sitemap.xml",
     },
   },
 }
@@ -38,14 +38,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const searchSchema = {
+    "@context": "https://schema.org/",
+    "@type": "WebSite",
+    name: "Bug Hunter",
+    url: "https://bug-hunter.vercel.app/",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://bug-hunter.vercel.app/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="tOg33RNCEzO6XZmK_ocsvSRbe7S2CjDCny6Yowmdc3k"
+        />
+      </head>
       <body className={`${jetBrains_Mono.className} antialiased`}>
         <Provider>
           <Navbar />
           <main className="container my-5">{children}</main>
           <Toaster />
         </Provider>
+        <LDSchema schema={searchSchema} />
       </body>
     </html>
   )

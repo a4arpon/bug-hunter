@@ -1,4 +1,6 @@
-export type IssueType = {
+import { ReplayType } from "./replay.type"
+
+export type IssuesType = {
   id: string
   title: string
   description: string
@@ -6,4 +8,9 @@ export type IssueType = {
   createdAt: Date
   updatedAt: Date
   privacy: string
+}
+
+export type IssueType = {
+  issue: IssuesType
+  replies: ReplayType[]
 }

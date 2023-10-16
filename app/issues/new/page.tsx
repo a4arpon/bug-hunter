@@ -48,13 +48,17 @@ const NewIssuePage = () => {
           router.push("/issues")
         })
         .catch((res) => {
-          alert("Uh-oh! Issue creation problem. Please try again.")
+          toast({
+            description: "Uh-oh! Issue creation problem. Please try again.",
+          })
           setLoading(false)
         })
     } else {
-      alert(
-        "Don't leave fields empty! Please fill out all required information."
-      )
+      toast({
+        title: "Alert",
+        description:
+          "Don't leave fields empty! Please fill out all required information.",
+      })
       setLoading(false)
     }
   }

@@ -18,6 +18,7 @@ model Issue {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   privacy     Privacy  @default(PUBLIC)
+  group       String
 }
 
 enum Staus {
@@ -37,4 +38,30 @@ model IssueReplay {
   issue_privacy Privacy
   replay        String
   createdAt     DateTime @default(now())
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  role     Roles  @default(USER)
+  email    String
+  password String
+}
+
+enum Roles {
+  ADMIN
+  USER
+}
+
+// Groups Prisma
+model Group {
+  id    String    @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  type  GroupType @default(PUBLIC)
+  owner String
+}
+
+enum GroupType {
+  PUBLIC
+  ORGANIZATION
 }

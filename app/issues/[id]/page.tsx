@@ -119,7 +119,7 @@ const IssuePage = async ({ params: { id } }: { params: { id: string } }) => {
                   <li className="mb-5" key={replay.id}>
                     <div className="group flex items-center ">
                       <div className="z-10 h-4 w-4 rounded-[100%] border-2 border-foreground bg-foreground">
-                        <div className="ml-3 mt-1 h-1 w-6  items-center bg-foreground"></div>
+                        <div className="ml-3 mt-[5px] h-1 w-6  items-center bg-foreground"></div>
                       </div>
                       <div className="z-10 ml-4 flex-1">
                         <IssueReplay replay={replay} />
@@ -130,7 +130,7 @@ const IssuePage = async ({ params: { id } }: { params: { id: string } }) => {
               <li className="mb-5 ">
                 <div className="group flex items-center ">
                   <div className="z-10 h-4 w-4 rounded-[100%] border-2 border-foreground bg-foreground">
-                    <div className="ml-3 mt-1 h-1 w-6  items-center bg-foreground"></div>
+                    <div className="ml-3 mt-[5px] h-1 w-6  items-center bg-foreground"></div>
                   </div>
                   <div className="z-10 ml-4 flex-1">
                     <Card>

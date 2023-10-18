@@ -90,8 +90,8 @@ const IssuePage = async ({ params: { id } }: { params: { id: string } }) => {
 
     return (
       <>
-        <section className="grid gap-5 lg:grid-cols-4">
-          <Card className="lg:col-span-4">
+        <section className="grid gap-5 lg:grid-cols-6">
+          <Card className="lg:col-span-6">
             <CardHeader>
               <CardTitle>{issue?.title}</CardTitle>
               <div className="pt-3 uppercase">
@@ -108,20 +108,43 @@ const IssuePage = async ({ params: { id } }: { params: { id: string } }) => {
             </CardContent>
           </Card>
           <div className="hidden lg:inline"></div>
-          <div className="flex flex-col gap-5 lg:col-span-3">
-            {replies &&
-              replies.map((replay) => (
-                <IssueReplay key={replay.id} replay={replay} />
-              ))}
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Reply On {issue?.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <IssueReplayForm />
-              </CardContent>
-            </Card>
+          <div className="relative lg:col-span-5">
+            <div
+              className="absolute top-0 h-full border-r-2 border-foreground"
+              style={{ left: "7px" }}
+            ></div>
+            <ul className="m-0 list-none p-0">
+              {replies &&
+                replies.map((replay) => (
+                  <li className="mb-5" key={replay.id}>
+                    <div className="group flex items-center ">
+                      <div className="z-10 h-4 w-4 rounded-[100%] border-2 border-foreground bg-foreground">
+                        <div className="ml-3 mt-[5px] h-1 w-6  items-center bg-foreground"></div>
+                      </div>
+                      <div className="z-10 ml-4 flex-1">
+                        <IssueReplay replay={replay} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              <li className="mb-5 ">
+                <div className="group flex items-center ">
+                  <div className="z-10 h-4 w-4 rounded-[100%] border-2 border-foreground bg-foreground">
+                    <div className="ml-3 mt-[5px] h-1 w-6  items-center bg-foreground"></div>
+                  </div>
+                  <div className="z-10 ml-4 flex-1">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Reply On {issue?.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <IssueReplayForm issue={issue?.id} />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </section>
         <LDSchema schema={LDObject} />

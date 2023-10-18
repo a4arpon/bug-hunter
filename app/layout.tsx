@@ -52,12 +52,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="tOg33RNCEzO6XZmK_ocsvSRbe7S2CjDCny6Yowmdc3k"
-        />
-      </head>
       <body className={`${jetBrains_Mono.className} antialiased`}>
         <Provider>
           <Navbar />
